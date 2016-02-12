@@ -39,9 +39,22 @@ RUN a2enmod rewrite
 #RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /app2/src/ /app/ && rm -rf /app/.htaccess
 
 #use curl download untar and delete tar file
-ADD https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz /app2/code.tar.xz
-RUN tar -zxvf /app2/code.tar.gz -C /app2
-RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /app2/OpenVoucher-0.4.2/src/ /app/ && rm -rf /app/.htaccess
+#ADD https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz /app2/code.tar.xz
+#RUN tar -zxvf /app2/code.tar.gz -C /app2
+#RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /app2/OpenVoucher-0.4.2/src/ /app/ && rm -rf /app/.htaccess
+
+
+ENV SQLBUDDY_URL https://codeload.github.com/lavvy/sqlbuddy/tar.gz/v1.0.0
+
+ENV HTTP_DOCUMENTROOT /app 
+
+
+RUN wget -O /tmp/sqlbuddy.tar.gz ${SQLBUDDY_URL}
+RUN tar -zxf /tmp/sqlbuddy.tar.gz -C /tmp/
+RUN cp -pr /tmp/sqlbuddy-*/src/* ${HTTP_DOCUMENTROOT}/
+RUN rm -rf /tmp/sqlbuddy-*
+RUN chown -R www-data:www-data ${HTTP_DOCUMENTROOT}
+
 
 #WORKDIR "/app"
 #COPY src /app
