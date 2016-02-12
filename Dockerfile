@@ -55,8 +55,8 @@ ENV HTTP_DOCUMENTROOT /app
 ADD ${SQLBUDDY_URL} sqlbuddy.tar.gz
 RUN tar -zxf sqlbuddy.tar.gz
 RUN mkdir -p /app 
-RUN cp -pr sqlbuddy-*/src/* ${HTTP_DOCUMENTROOT}/
-RUN rm -rf sqlbuddy-*
+RUN cp -pr OpenVoucher-0.4.2-*/src/* ${HTTP_DOCUMENTROOT}/
+#RUN rm -rf sqlbuddy-*
 RUN chown -R www-data:www-data ${HTTP_DOCUMENTROOT}
 
 
