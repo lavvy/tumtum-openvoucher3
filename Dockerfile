@@ -31,40 +31,17 @@ RUN a2enmod rewrite
 #RUN git clone https://github.com/fermayo/hello-world-lamp.git /app
 #RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 
+
+
+
 #adding my own little hack
 
-##RUN git clone https://github.com/litzinetz-de/OpenVoucher.git /app2
-#ADD https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz /app2/
-#RUN tar -xJf /app2/OpenVoucher-0.4.2.tar.xz -C /app2
-#RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /app2/src/ /app/ && rm -rf /app/.htaccess
-
-#use curl download untar and delete tar file
-#ADD https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz /app2/code.tar.xz
-#RUN tar -zxvf /app2/code.tar.gz -C /app2
-#RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /app2/OpenVoucher-0.4.2/src/ /app/ && rm -rf /app/.htaccess
-
-
-#ENV SQLBUDDY_URL https://codeload.github.com/lavvy/sqlbuddy/tar.gz/v1.0.0
 ENV PACKAGE_URL https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
-
-ENV HTTP_DOCUMENTROOT /app 
-
-
-# RUN wget -O /tmp/sqlbuddy.tar.gz ${SQLBUDDY_URL}
 
 ADD ${PACKAGE_URL} package.tar.gz
 RUN tar -zxf package.tar.gz
-#RUN mkdir -p /app 
-#RUN cp -pr OpenVoucher-*/src/* ${HTTP_DOCUMENTROOT}/
 
-RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -pr OpenVoucher-*/src/* /app/ && rm -rf /app/.htaccess
-
-RUN rm -rf OpenVoucher-*
-RUN chown -R www-data:www-data /app
-
-
-#WORKDIR "/app"
-#COPY src /app
+RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -pr OpenVoucher-*/src/* /app/ && rm -rf /app/.htaccess && rm -rf OpenVoucher-* && chown -R www-data:www-data /app
 
 
 
