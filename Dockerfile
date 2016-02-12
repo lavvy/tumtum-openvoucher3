@@ -45,19 +45,22 @@ RUN a2enmod rewrite
 
 
 #ENV SQLBUDDY_URL https://codeload.github.com/lavvy/sqlbuddy/tar.gz/v1.0.0
-ENV SQLBUDDY_URL https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
+ENV PACKAGE_URL https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
 
 ENV HTTP_DOCUMENTROOT /app 
 
 
 # RUN wget -O /tmp/sqlbuddy.tar.gz ${SQLBUDDY_URL}
 
-ADD ${SQLBUDDY_URL} sqlbuddy.tar.gz
-RUN tar -zxf sqlbuddy.tar.gz
-RUN mkdir -p /app 
-RUN cp -pr OpenVoucher-0.4.2-*/src/* ${HTTP_DOCUMENTROOT}/
-#RUN rm -rf sqlbuddy-*
-RUN chown -R www-data:www-data ${HTTP_DOCUMENTROOT}
+ADD ${PACKAGE_URL} package.tar.gz
+RUN tar -zxf package.tar.gz
+#RUN mkdir -p /app 
+#RUN cp -pr OpenVoucher-*/src/* ${HTTP_DOCUMENTROOT}/
+
+RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -pr OpenVoucher-*/src/* /app/ && rm -rf /app/.htaccess
+
+RUN rm -rf OpenVoucher-*
+RUN chown -R www-data:www-data /app
 
 
 #WORKDIR "/app"
