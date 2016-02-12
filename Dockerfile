@@ -52,7 +52,7 @@ ENV HTTP_DOCUMENTROOT /app
 
 # RUN wget -O /tmp/sqlbuddy.tar.gz ${SQLBUDDY_URL}
 
-ADD sqlbuddy.tar.gz ${SQLBUDDY_URL}
+ADD ${SQLBUDDY_URL} sqlbuddy.tar.gz
 RUN tar -zxf sqlbuddy.tar.gz -C /app/
 RUN cp -pr sqlbuddy-*/src/* ${HTTP_DOCUMENTROOT}/
 RUN rm -rf sqlbuddy-*
