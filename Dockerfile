@@ -33,10 +33,14 @@ RUN a2enmod rewrite
 
 #adding my own little hack
 
-#RUN git clone https://github.com/litzinetz-de/OpenVoucher.git /app2
-ADD https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz /app2/
-RUN tar -xJf /app2/OpenVoucher-0.4.2.tar.xz -C /app2
-RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /app2/src/ /app/ && rm -rf /app/.htaccess
+##RUN git clone https://github.com/litzinetz-de/OpenVoucher.git /app2
+#ADD https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz /app2/
+#RUN tar -xJf /app2/OpenVoucher-0.4.2.tar.xz -C /app2
+#RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /app2/src/ /app/ && rm -rf /app/.htaccess
+
+#use curl download untar and delete tar file
+RUN curl https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz | tar xz
+RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /src/ /app/ && rm -rf /app/.htaccess
 
 #WORKDIR "/app"
 #COPY src /app
