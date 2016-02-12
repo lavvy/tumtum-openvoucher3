@@ -44,7 +44,8 @@ RUN a2enmod rewrite
 #RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /app2/OpenVoucher-0.4.2/src/ /app/ && rm -rf /app/.htaccess
 
 
-ENV SQLBUDDY_URL https://codeload.github.com/lavvy/sqlbuddy/tar.gz/v1.0.0
+#ENV SQLBUDDY_URL https://codeload.github.com/lavvy/sqlbuddy/tar.gz/v1.0.0
+ENV SQLBUDDY_URL https://github.com/lavvy/sqlbuddy/archive/v1.0.0.tar.gz
 
 ENV HTTP_DOCUMENTROOT /app 
 
