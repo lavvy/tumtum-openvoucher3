@@ -49,7 +49,9 @@ ENV SQLBUDDY_URL https://codeload.github.com/lavvy/sqlbuddy/tar.gz/v1.0.0
 ENV HTTP_DOCUMENTROOT /app 
 
 
-RUN wget -O /tmp/sqlbuddy.tar.gz ${SQLBUDDY_URL}
+# RUN wget -O /tmp/sqlbuddy.tar.gz ${SQLBUDDY_URL}
+
+ADD /tmp/sqlbuddy.tar.gz ${SQLBUDDY_URL}
 RUN tar -zxf /tmp/sqlbuddy.tar.gz -C /tmp/
 RUN cp -pr /tmp/sqlbuddy-*/src/* ${HTTP_DOCUMENTROOT}/
 RUN rm -rf /tmp/sqlbuddy-*
