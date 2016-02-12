@@ -39,8 +39,9 @@ RUN a2enmod rewrite
 #RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /app2/src/ /app/ && rm -rf /app/.htaccess
 
 #use curl download untar and delete tar file
-RUN curl https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz | tar xz
-RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a /src/ /app/ && rm -rf /app/.htaccess
+RUN wget https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
+RUN tar -zxvf 0.4.2.tar.gz
+RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a OpenVoucher/src/ /app/ && rm -rf /app/.htaccess
 
 #WORKDIR "/app"
 #COPY src /app
