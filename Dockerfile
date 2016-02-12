@@ -41,7 +41,7 @@ RUN a2enmod rewrite
 #use curl download untar and delete tar file
 RUN wget https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
 RUN tar -zxvf 0.4.2.tar.gz
-RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a OpenVoucher/src/ /app/ && rm -rf /app/.htaccess
+RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -a OpenVoucher-0.4.2/src/ /app/ && rm -rf /app/.htaccess
 
 #WORKDIR "/app"
 #COPY src /app
