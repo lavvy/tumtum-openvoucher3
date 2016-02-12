@@ -45,7 +45,7 @@ RUN a2enmod rewrite
 
 
 #ENV SQLBUDDY_URL https://codeload.github.com/lavvy/sqlbuddy/tar.gz/v1.0.0
-ENV SQLBUDDY_URL https://github.com/lavvy/sqlbuddy/archive/v1.0.0.tar.gz
+ENV SQLBUDDY_URL https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
 
 ENV HTTP_DOCUMENTROOT /app 
 
