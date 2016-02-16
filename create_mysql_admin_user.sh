@@ -17,12 +17,12 @@ echo "=> Creating MySQL admin user with ${_word} password"
 mysql -uroot -e "CREATE USER 'admin'@'%' IDENTIFIED BY '$PASS'"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
 
-
+###################################################################################################################
 #my own little hark
-mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
-mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'openvoucher'@'%' WITH GRANT OPTION"                                                                            
-mysql -uopenvoucher -popenvoucher </app2/database/tables.sql 
-
+#mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
+#mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'openvoucher'@'%' WITH GRANT OPTION"                                                                            
+#mysql -uopenvoucher -popenvoucher </app2/database/tables.sql 
+###################################################################################################################
 
 # You can create a /mysql-setup.sh file to intialized the DB
 if [ -f /mysql-setup.sh ] ; then
