@@ -1,6 +1,11 @@
 FROM ubuntu:trusty
 MAINTAINER Fernando Mayo <fernando@tutum.co>, Feng Honglin <hfeng@tutum.co>
 
+#my little hack
+#configuring my custom enviroments for bash script > run.sh
+ENV HTTP_DOCUMENTROOT /app
+ENV PACKAGE_URL https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
+
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
@@ -35,14 +40,12 @@ RUN a2enmod rewrite
 
 
 #adding my own little hack
-
-ENV PACKAGE_URL https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
-
-ADD ${PACKAGE_URL} package.tar.gz
-RUN tar -zxf package.tar.gz
-
-RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -pr OpenVoucher-*/src/* /app/ && rm -rf /app/.htaccess && rm -rf OpenVoucher-* && chown -R www-data:www-data /app
-
+######################################################################################################################
+#ENV PACKAGE_URL https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
+#ADD ${PACKAGE_URL} package.tar.gz
+#RUN tar -zxf package.tar.gz
+#RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html && cp -pr OpenVoucher-*/src/* /app/ && rm -rf /app/.htaccess && rm -rf OpenVoucher-* && chown -R www-data:www-data /app
+#########################################################################################################################
 
 
 #Enviornment variables to configure php
