@@ -16,7 +16,7 @@ fi
 
 exec supervisord -n
 
-
+###############################################################################################################################
 # my little hack
 if [ ! -e ${HTTP_DOCUMENTROOT}/index2.php ]; then
    echo "=> Installing package in ${HTTP_DOCUMENTROOT}/ - this may take a while ..."
