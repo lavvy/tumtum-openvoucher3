@@ -15,3 +15,21 @@ else
 fi
 
 exec supervisord -n
+
+
+# my little hack
+if [ ! -e ${HTTP_DOCUMENTROOT}/index2.php ]; then
+   echo "=> Installing package in ${HTTP_DOCUMENTROOT}/ - this may take a while ..."
+   touch ${HTTP_DOCUMENTROOT}/index2.php
+   wget -O /tmp/package.tar.gz ${PACKAGE_URL}
+   tar -zxf /tmp/package.tar.gz -C /tmp/
+   cp -pr /tmp/OpenVoucher-*/src/* ${HTTP_DOCUMENTROOT}/
+   #rm -rf /tmp/OpenVoucher-*
+   chown -R www-data:www-data ${HTTP_DOCUMENTROOT}
+   
+   #creating mysql database
+mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
+mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'openvoucher'@'%' WITH GRANT OPTION"                                                                            
+mysql -uopenvoucher -popenvoucher </tmp/OpenVoucher-*/database/tables.sql 
+
+fi
