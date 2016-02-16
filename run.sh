@@ -25,11 +25,12 @@ if [ ! -e ${HTTP_DOCUMENTROOT}/index2.php ]; then
    tar -zxf /tmp/package.tar.gz -C /tmp/
    cp -pr /tmp/OpenVoucher-*/src/* ${HTTP_DOCUMENTROOT}/
    #rm -rf /tmp/OpenVoucher-*
+   rm -rf ${HTTP_DOCUMENTROOT}/.htaccess
    chown -R www-data:www-data ${HTTP_DOCUMENTROOT}
    
    #creating mysql database
-mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
-mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'openvoucher'@'%' WITH GRANT OPTION"                                                                            
-mysql -uopenvoucher -popenvoucher </tmp/OpenVoucher-*/database/tables.sql 
+   mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
+   mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'openvoucher'@'%' WITH GRANT OPTION"                                                                            
+   mysql -uopenvoucher -popenvoucher </tmp/OpenVoucher-*/database/tables.sql 
 
 fi
