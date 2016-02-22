@@ -1,11 +1,6 @@
 #!/bin/bash
 
-################# my little hack ##################
-wget -O /tmp/package.tar.gz ${PACKAGE_URL}
-tar -zxf /tmp/package.tar.gz -C /tmp/
-cp -pr /tmp/OpenVoucher-*/src/* /app/
-rm -rf /app/.htaccess
-################################################################
+
 
 VOLUME_HOME="/var/lib/mysql"
 
