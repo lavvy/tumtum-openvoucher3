@@ -3,7 +3,8 @@ MAINTAINER Fernando Mayo <fernando@tutum.co>, Feng Honglin <hfeng@tutum.co>
 
 #my little hack
 #configuring my custom enviroments for bash script > run.sh
-ENV HTTP_DOCUMENTROOT /app
+#ENV HTTP_DOCUMENTROOT /app
+ENV HTTP_DOCUMENTROOT /var/www/html
 ENV PACKAGE_URL https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
 
 # Install packages
