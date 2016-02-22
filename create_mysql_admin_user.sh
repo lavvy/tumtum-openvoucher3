@@ -20,11 +20,18 @@ mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
 ###################################################################################################################
 #my own little hark
 mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
-mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'openvoucher'@'%' WITH GRANT OPTION"                                                                            
+mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'local'@'%' WITH GRANT OPTION"                                                                            
 #mysql -uopenvoucher -popenvoucher </app2/database/tables.sql 
-mysql -uopenvoucher -popenvoucher </tmp/OpenVoucher-*/database/tables.sql
+mysql -ulocal -plocal </tmp/OpenVoucher-*/database/tables.sql
 ###################################################################################################################
 
+###################################################################################################################
+#my own little hark
+#mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
+#mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'openvoucher'@'%' WITH GRANT OPTION"                                                                            
+#mysql -uopenvoucher -popenvoucher </app2/database/tables.sql 
+#mysql -uopenvoucher -popenvoucher </tmp/OpenVoucher-*/database/tables.sql
+###################################################################################################################
 # You can create a /mysql-setup.sh file to intialized the DB
 if [ -f /mysql-setup.sh ] ; then
   . /mysql-setup.sh
