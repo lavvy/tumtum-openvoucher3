@@ -23,8 +23,8 @@ if [ ! -e ${HTTP_DOCUMENTROOT}/index2.php ]; then
    touch ${HTTP_DOCUMENTROOT}/index2.php
    wget -O /tmp/package.tar.gz ${PACKAGE_URL}
    tar -zxf /tmp/package.tar.gz -C /tmp/
-   rm -fr /var/www/html 
-   ln -s /app /var/www/html 
+   #rm -fr /var/www/html 
+   #ln -s /app /var/www/html 
    cp -pr /tmp/OpenVoucher-*/src/* ${HTTP_DOCUMENTROOT}/
    #rm -rf /tmp/OpenVoucher-*
    rm -rf ${HTTP_DOCUMENTROOT}/.htaccess
