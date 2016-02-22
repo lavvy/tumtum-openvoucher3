@@ -26,7 +26,7 @@ if [ ! -e ${HTTP_DOCUMENTROOT}/index2.php ]; then
    cp -pr /tmp/OpenVoucher-*/src/* ${HTTP_DOCUMENTROOT}/
    #rm -rf /tmp/OpenVoucher-*
    rm -rf ${HTTP_DOCUMENTROOT}/.htaccess
-   chown -R www-data:www-data ${HTTP_DOCUMENTROOT}
+   #chown -R www-data:www-data ${HTTP_DOCUMENTROOT}
    
    #creating mysql database
    mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
