@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 VOLUME_HOME="/var/lib/mysql"
 
 sed -ri -e "s/^upload_max_filesize.*/upload_max_filesize = ${PHP_UPLOAD_MAX_FILESIZE}/" \
@@ -14,25 +15,18 @@ else
     echo "=> Using an existing volume of MySQL"
 fi
 
+# my little hack
+
+wget -O /tmp/package.tar.gz ${PACKAGE_URL}
+tar -zxf /tmp/package.tar.gz -C /tmp/
+cp -pr /tmp/OpenVoucher-*/src/* /app/
+rm -rf /app/.htaccess
+#creating mysql database
+mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
+mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'openvoucher'@'%' WITH GRANT OPTION"                                                                            
+mysql -uopenvoucher -popenvoucher </tmp/OpenVoucher-*/database/tables.sql
+
+
 exec supervisord -n
 
-###############################################################################################################################
-# my little hack
-if [ ! -e ${HTTP_DOCUMENTROOT}/index2.php ]; then
-   echo "=> Installing package in ${HTTP_DOCUMENTROOT}/ - this may take a while ..."
-   touch ${HTTP_DOCUMENTROOT}/index2.php
-   wget -O /tmp/package.tar.gz ${PACKAGE_URL}
-   tar -zxf /tmp/package.tar.gz -C /tmp/
-   #rm -fr /var/www/html 
-   #ln -s /app /var/www/html 
-   cp -pr /tmp/OpenVoucher-*/src/* ${HTTP_DOCUMENTROOT}/
-   #rm -rf /tmp/OpenVoucher-*
-   rm -rf ${HTTP_DOCUMENTROOT}/.htaccess
-   #chown -R www-data:www-data ${HTTP_DOCUMENTROOT}
-   
-   #creating mysql database
-   mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
-   mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'openvoucher'@'%' WITH GRANT OPTION"                                                                            
-   mysql -uopenvoucher -popenvoucher </tmp/OpenVoucher-*/database/tables.sql 
 
-fi
