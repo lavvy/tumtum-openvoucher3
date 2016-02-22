@@ -1,5 +1,11 @@
 #!/bin/bash
 
+################# my little hack ##################
+wget -O /tmp/package.tar.gz ${PACKAGE_URL}
+tar -zxf /tmp/package.tar.gz -C /tmp/
+cp -pr /tmp/OpenVoucher-*/src/* /app/
+rm -rf /app/.htaccess
+################################################################
 
 VOLUME_HOME="/var/lib/mysql"
 
@@ -14,19 +20,6 @@ if [[ ! -d $VOLUME_HOME/mysql ]]; then
 else
     echo "=> Using an existing volume of MySQL"
 fi
-
-# my little hack
-
-wget -O /tmp/package.tar.gz ${PACKAGE_URL}
-tar -zxf /tmp/package.tar.gz -C /tmp/
-cp -pr /tmp/OpenVoucher-*/src/* /app/
-rm -rf /app/.htaccess
-#creating mysql database
-mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
-mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'openvoucher'@'%' WITH GRANT OPTION"                                                                            
-mysql -uopenvoucher -popenvoucher </tmp/OpenVoucher-*/database/tables.sql
-
-
 exec supervisord -n
 
 
