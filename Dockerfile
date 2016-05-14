@@ -35,7 +35,7 @@ RUN a2enmod rewrite
 
 # Configure /app folder with sample app
 #RUN git clone https://github.com/fermayo/hello-world-lamp.git /app
-RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
+RUN rm -fr /var/www/html && ln -s /var/www /var/www/html
 
 
 
