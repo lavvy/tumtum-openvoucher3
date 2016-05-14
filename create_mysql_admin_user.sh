@@ -20,7 +20,7 @@ mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
 ###################################################################################################################
 #my own little hark
 ################# my little hack ##################
-wget -O /tmp/package.tar.gz https://github.com/litzinetz-de/OpenVoucher/archive/0.3.3.tar.gz
+wget -O /tmp/package.tar.gz https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
 tar -zxf /tmp/package.tar.gz -C /tmp/
 cp -pr /tmp/OpenVoucher-*/src/* /var/www
 rm -rf /var/www/.htaccess
