@@ -38,9 +38,9 @@ RUN a2enmod rewrite
 #RUN rm -fr /var/www/html && ln -s /var/www /var/www/html
 
 
-RUN echo "www-data ALL=(ALL) NOPASSWD: /sbin/iptables" >> /etc/sudoers
+#RUN echo "www-data ALL=(ALL) NOPASSWD: /sbin/iptables" >> /etc/sudoers
 
-RUN sed 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf
+#RUN sed 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf
 
 #adding my own little hack
 ######################################################################################################################
