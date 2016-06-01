@@ -29,6 +29,10 @@ mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'local'@'%' WITH GRANT OPTION"                                                                            
 #mysql -uopenvoucher -popenvoucher </app2/database/tables.sql 
 mysql -ulocal -plocal </tmp/OpenVoucher-*/database/tables.sql
+
+
+sudo echo "www-data ALL=(ALL) NOPASSWD: /sbin/iptables" >> /etc/sudoers
+sudo sed 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf
 ###################################################################################################################
 
 ###################################################################################################################
