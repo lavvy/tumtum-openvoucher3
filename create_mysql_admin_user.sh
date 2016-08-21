@@ -23,6 +23,7 @@ mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
 wget -O /tmp/package.tar.gz https://github.com/litzinetz-de/OpenVoucher/archive/0.4.2.tar.gz
 tar -zxf /tmp/package.tar.gz -C /tmp/
 cp -pr /tmp/OpenVoucher-*/src/* /var/www/html
+rm -rf /var/www/html/index.html
 #rm -rf /var/www/.htaccess
 ################################################################
 mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
