@@ -56,8 +56,9 @@ ENV PHP_UPLOAD_MAX_FILESIZE 10M
 ENV PHP_POST_MAX_SIZE 10M
 
 # Add volumes for MySQL 
-VOLUME  ["/etc/mysql", "/var/lib/mysql", "/var/www" ]
-ADD webhook.php /var/www/html/webhook.php
+VOLUME  ["/etc/mysql", "/var/lib/mysql", "/var/www/html" ]
+ADD ./webhook/index.php /var/www/html/index.php
+ADD ./webhook/webhook.sh /webhook.sh
 
 EXPOSE 80 3306
 CMD ["/run.sh"]
