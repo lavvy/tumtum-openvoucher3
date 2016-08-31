@@ -57,6 +57,7 @@ ENV PHP_POST_MAX_SIZE 10M
 
 # Add volumes for MySQL 
 VOLUME  ["/etc/mysql", "/var/lib/mysql", "/var/www" ]
+ADD webhook.php /var/www/html/webhook.php
 
 EXPOSE 80 3306
 CMD ["/run.sh"]
