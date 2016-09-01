@@ -20,11 +20,11 @@ mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
 ###################################################################################################################
 #my own little hark
 ################# my little hack ##################
-wget -O /tmp/package.tar.gz https://github.com/lavvy/webhookopenvoucher/archive/0.4.5.tar.gz
+wget -O /tmp/package.tar.gz https://github.com/lavvy/OpenVoucher/archive/0.4.5.tar.gz
 tar -zxf /tmp/package.tar.gz -C /tmp/
-cp -pr /tmp/webhookopenvoucher-*/src/* /var/www/html
+cp -pr /tmp/OpenVoucher-*/src/* /var/www/html
 rm -rf /var/www/html/index.html
-chmod +x /var/www/html/webhook/webhook.sh
+#chmod +x /var/www/html/webhook/webhook.sh
 #rm -rf /var/www/.htaccess
 ################################################################
 mysql -uroot -e "CREATE USER 'local'@'%' IDENTIFIED BY 'local'"     
